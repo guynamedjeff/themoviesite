@@ -54,10 +54,13 @@ def editMovie(movie_id):
 
 @app.route('/movies/<int:movie_id>/delete/', methods=['GET', 'POST'])
 def deleteMovie(movie_id):
+    movie = session.query(Movie).filter_by(id=movie_id).one()
     if request.method =='POST':
+      session.delete(movie)
+      session.commit()
       return redirect(url_for('main'))
     else:
-      return render_template("deletemovie.html")
+      return render_template("deletemovie.html", movie=movie)
 
 if __name__ == '__main__':
     app.debug = True

@@ -4,9 +4,12 @@
     <title>Delete a Movie</title>
 </head>
 <body>
-<p>
-  Delete a movie!!!!!
-</p>
+<h1>
+  Deleting {{movie.name}}
+</h1>
+<form action='{{url_for('deleteMovie', movie_id=movie.id)}}' method='post'>
+    <input type='submit' value='Yes, Delete {{movie.name}}'>
+</form>
 <p><a href='{{url_for('main')}}'>Cancel</a></p>
 </body>
 </html>
