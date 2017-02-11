@@ -4,9 +4,9 @@
     <title>Add a New Movie</title>
 </head>
 <body>
-<p>
-Add a new movie!!!!
-</p>
+<h1>
+  Add a new movie!!!!
+</h1>
 <form action="{{url_for('newMovie')}}" method="POST">
     <input type="text" name="name" placeholder="Movie Title"><br><br>
     <input type="text" name="year" placeholder="Year"><br><br>
@@ -14,6 +14,18 @@ Add a new movie!!!!
     <input type="text" name="genre" placeholder="Genre Code"><br><br>
     <input type="submit" value="submit">
 </form>
-<p><a href='{{url_for('main')}}'>Cancel</a></p>
+<p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
+<br>
+<div>
+# Genre Codes<br>
+# 1000000 = None<br>
+# 1000001 = Drama<br>
+# 1000010 = Comedy<br>
+# 1000100 = Thriller<br>
+# 1001000 = Action<br>
+# 1010000 = Horror<br>
+# 1100000 = Animation
+</div>
+
 </body>
 </html>

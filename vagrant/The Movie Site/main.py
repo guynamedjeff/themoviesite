@@ -10,6 +10,11 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/movies/json/')
+def json():
+    movies = session.query(Movie).all()
+    return jsonify(Movies=[m.movie_json for m in movies])
+
 @app.route('/')
 @app.route('/movies/')
 def main():
@@ -30,6 +35,7 @@ def newMovie():
                         genre=request.form['genre'])
       session.add(newMovie)
       session.commit()
+      flash(newMovie.name + " has been added.")
       return redirect(url_for('main'))
     else:
       return render_template("newmovie.html")
@@ -48,6 +54,7 @@ def editMovie(movie_id):
         movie.genre = request.form['genre']
       session.add(movie)
       session.commit()
+      flash(movie.name + " has been edited.")
       return redirect(url_for('main'))
     else:
       return render_template("editmovie.html", movie=movie)
@@ -58,10 +65,12 @@ def deleteMovie(movie_id):
     if request.method =='POST':
       session.delete(movie)
       session.commit()
+      flash(movie.name + " has been deleted.")
       return redirect(url_for('main'))
     else:
       return render_template("deletemovie.html", movie=movie)
 
 if __name__ == '__main__':
+    app.secret_key = 'american_beauty'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)

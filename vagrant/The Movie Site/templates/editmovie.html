@@ -6,12 +6,22 @@
 <body>
 <h1>Editing "{{movie.name}}"</h1>
 <form action='{{url_for('editMovie', movie_id=movie.id)}}' method='post'>
-  <input type="text" name ="name" placeholder="{{movie.name}}">
-  <input type="text" name ="year" placeholder="{{movie.year}}">
-  <input type="text" name ="poster" placeholder="{{movie.poster}}">
-  <input type="text" name ="genre" placeholder="{{movie.genre}}">
+  <input type="text" name ="name" placeholder="{{movie.name}}"><br><br>
+  <input type="text" name ="year" placeholder="{{movie.year}}"><br><br>
+  <input type="text" name ="poster" placeholder="{{movie.poster}}"><br><br>
+  <input type="text" name ="genre" placeholder="{{movie.genre}}"><br><br>
   <input type="submit" value="submit">
 </form>
-<p><a href='{{url_for('main')}}'>Cancel</a></p>
+<p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
+<div>
+# Genre Codes<br>
+# 1000000 = None<br>
+# 1000001 = Drama<br>
+# 1000010 = Comedy<br>
+# 1000100 = Thriller<br>
+# 1001000 = Action<br>
+# 1010000 = Horror<br>
+# 1100000 = Animation
+</div>
 </body>
 </html>

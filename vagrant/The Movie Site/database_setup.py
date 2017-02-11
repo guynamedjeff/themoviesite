@@ -2,7 +2,6 @@ import os
 import sys
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 Base = declarative_base()
@@ -16,6 +15,17 @@ class Movie(Base):
     year = Column (Integer(4), nullable=False)
     poster = Column(String(250), nullable=False)
     genre = Column(Integer(7), nullable=False)
+
+    @property
+    def movie_json(self):
+        return {
+          'id': self.id,
+          'name': self.name,
+          'year': self.year,
+          'poster': self.poster,
+          'genre_code': self.genre,
+        }
+
 
 engine = create_engine('sqlite:///movies.db')
 
