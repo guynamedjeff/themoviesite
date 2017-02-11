@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Movie Site</title>
+</head>
+<body>
+<h1>
+  The Movie Site
+</h1>
+<p><a href='{{url_for('newMovie')}}'>Click here to add a new movie.</a></p>
+{% for m in movies %}
+{{m.name}} ({{m.year}})<br>
+<a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a>
+<br><br>
+{% endfor %}
+</body>
+</html>

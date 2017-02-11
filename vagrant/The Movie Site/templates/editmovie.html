@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit a Movie</title>
+</head>
+<body>
+<h1>Editing "{{movie.name}}"</h1>
+<form action='{{url_for('editMovie', movie_id=movie.id)}}' method='post'>
+  <input type="text" name ="name" placeholder="{{movie.name}}">
+  <input type="text" name ="year" placeholder="{{movie.year}}">
+  <input type="text" name ="poster" placeholder="{{movie.poster}}">
+  <input type="text" name ="genre" placeholder="{{movie.genre}}">
+  <input type="submit" value="submit">
+</form>
+<p><a href='{{url_for('main')}}'>Cancel</a></p>
+</body>
+</html>

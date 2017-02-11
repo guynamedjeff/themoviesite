@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Movie</title>
+</head>
+<body>
+<p>
+Add a new movie!!!!
+</p>
+<form action="{{url_for('newMovie')}}" method="POST">
+    <input type="text" name="name" placeholder="Movie Title"><br><br>
+    <input type="text" name="year" placeholder="Year"><br><br>
+    <input type="text" name="poster" placeholder="Poster URL"><br><br>
+    <input type="text" name="genre" placeholder="Genre Code"><br><br>
+    <input type="submit" value="submit">
+</form>
+<p><a href='{{url_for('main')}}'>Cancel</a></p>
+</body>
+</html>
