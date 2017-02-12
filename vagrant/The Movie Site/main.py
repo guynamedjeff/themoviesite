@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Movie
+from cache import cache_movies
+
 app = Flask(__name__)
 
 engine = create_engine('sqlite:///movies.db')
@@ -12,13 +14,13 @@ session = DBSession()
 
 @app.route('/movies/json/')
 def json():
-    movies = session.query(Movie).all()
+    movies = cache_movies()
     return jsonify(Movies=[m.movie_json for m in movies])
 
 @app.route('/')
 @app.route('/movies/')
 def main():
-    movies = session.query(Movie).all()
+    movies = cache_movies()
     return render_template("index.html", movies=movies)
 
 @app.route('/movies/<int:movie_id>/')
@@ -35,6 +37,7 @@ def newMovie():
                         genre=request.form['genre'])
       session.add(newMovie)
       session.commit()
+      cache_movies(True)
       flash(newMovie.name + " has been added.")
       return redirect(url_for('main'))
     else:
@@ -54,6 +57,7 @@ def editMovie(movie_id):
         movie.genre = request.form['genre']
       session.add(movie)
       session.commit()
+      cache_movies(True)
       flash(movie.name + " has been edited.")
       return redirect(url_for('main'))
     else:
@@ -65,6 +69,7 @@ def deleteMovie(movie_id):
     if request.method =='POST':
       session.delete(movie)
       session.commit()
+      cache_movies(True)
       flash(movie.name + " has been deleted.")
       return redirect(url_for('main'))
     else:
