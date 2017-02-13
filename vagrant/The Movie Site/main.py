@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Movie
 from cache import cache_movies
+import json
 
 app = Flask(__name__)
 
