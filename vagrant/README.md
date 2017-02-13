@@ -13,10 +13,8 @@ https://github.com/guynamedjeff/themoviesite
 
 # Running / Development
 
-* vagrant up
-* vagrant ssh
-* cd /vagrant/the\ movie\ site
-* python main.py
+* 1st Window: vagrant up --> vagrant ssh --> cd /vagrant/the\ movie\ site --> python main.py
+* 2nd Window: vagrant up --> vagrant ssh --> redis-server
 
 # Description
 
