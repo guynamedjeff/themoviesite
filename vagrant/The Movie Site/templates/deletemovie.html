@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete a Movie</title>
-</head>
-<body>
-<h1>
-  Deleting "{{movie.name}}"
-</h1>
-<form action='{{url_for('deleteMovie', movie_id=movie.id)}}' method='post'>
-    <input type='submit' value='Yes, Delete {{movie.name}}'>
-</form>
-<p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+    <h3>Deleting "{{movie.name}}"</h3>
+    <form action='{{url_for('deleteMovie', movie_id=movie.id)}}' method='post'>
+        <input type='submit' value='Yes, Delete {{movie.name}}'>
+    </form>
+    <p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
+{% endblock %}
