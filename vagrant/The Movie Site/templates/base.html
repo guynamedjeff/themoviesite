@@ -2,15 +2,36 @@
 <html>
   <head>
     {% block head %}
+        <!-- SET VIEWPORT AND UTF -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- ADD BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- IMPORT STATICS AND FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
     <title>{% block title %}{% endblock %} | The Movie Site</title>
     {% endblock %}
   </head>
   <body>
-    <div id="header">
+    <div class="container-fluid text-center">
       <h1>The Movie Site</h1>
     </div>
+    <nav class="navbar-default">
+        <div class="container">
+          <div class="text-center">
+            <div class="nav">
+              <h3><a href='{{url_for('newMovie')}}'>ADD</a> | <a href='{{url_for('json')}}'>API</a> | <a href="#">ABOUT</a><h3>
+            </div>
+          </div>
+        </div>
+    </nav>
     <div id="content">{% block content %}{% endblock %}</div>
-    <div id="footer">
+    <div id="footer" class="text-center">
       {% block footer %}
       &copy; Copyright 2016 by <a href="https://github.com/guynamedjeff/themoviesite/tree/master/vagrant">Jeff Roszkowski</a>.
       {% endblock %}

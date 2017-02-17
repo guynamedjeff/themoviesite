@@ -13,13 +13,12 @@
           </ul>
       {% endif %}
   {% endwith %}
-
-  <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('json')}}'>API Endpoint</a></p>
   {% for m in movies %}
       <div>
           {{m.name}} ({{m.year}})<br>
-          <a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a>
+          <a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a>
       </div>
       <br><br>
   {% endfor %}
+  <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('json')}}'>API Endpoint</a></p>
 {% endblock %}
