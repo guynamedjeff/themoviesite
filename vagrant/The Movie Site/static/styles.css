@@ -7,6 +7,10 @@ h1 {
     color: #000;
 }
 
+h1 a:hover {
+    text-decoration: none;
+}
+
 h3 > a, a:hover {
     color: #000;
 }
@@ -17,4 +21,15 @@ a, a:hover {
 
 .navbar-default {
     background-color: #fff;
+}
+
+.movie-info {
+    border-bottom-style: solid;
+    border-bottom-color: #F2F2F2;
+    border-bottom-width: 1px;
+    margin: 35px auto;
+}
+
+.poster {
+    height: 315px;
 }

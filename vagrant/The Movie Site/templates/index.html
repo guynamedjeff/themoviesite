@@ -14,13 +14,22 @@
       {% endif %}
   {% endwith %}
   {% for m in movies %}
-      <div class="container-fluid">
-          {{m.name}} ({{m.year}})<br>
-          <a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a>
-          <br><br>
+      <div class="container movie-info">
+        <div class="row">
+          <div class="col-sm-4">
+            <a href="https://www.youtube.com/watch?v=bLvqoHBptjg" target="_blank"><img src='{{m.poster}}' class="img-responsive poster center-block" alt="{{m.name}} Poster"></a>
+          </div>
+          <div class="col-sm-8">
+            <h2>{{m.name}}
+              <small><a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a></small>
+            </h2><br>
+            <h4>Description:</h4>
+            <h4>Words</h4>
+          </div>
+        </div><br><br>
       </div>
   {% endfor %}
-  <div class="container-fluid">
+  <div class="container-fluid text-center">
     <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('json')}}'>API Endpoint</a></p>
   </div>
 
