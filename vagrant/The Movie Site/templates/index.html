@@ -14,11 +14,14 @@
       {% endif %}
   {% endwith %}
   {% for m in movies %}
-      <div>
+      <div class="container-fluid">
           {{m.name}} ({{m.year}})<br>
           <a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a>
+          <br><br>
       </div>
-      <br><br>
   {% endfor %}
-  <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('json')}}'>API Endpoint</a></p>
+  <div class="container-fluid">
+    <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('json')}}'>API Endpoint</a></p>
+  </div>
+
 {% endblock %}

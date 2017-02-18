@@ -16,7 +16,7 @@ session = DBSession()
 @app.route('/movies/json/')
 def json():
     movies = cache_movies()
-    return jsonify(Movies=[m.movie_json for m in movies])
+    return jsonify(Movies=[m for m in movies])
 
 @app.route('/')
 @app.route('/movies/')
