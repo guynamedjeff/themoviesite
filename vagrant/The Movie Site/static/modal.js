@@ -12,10 +12,10 @@ for (i = 0; i < images.length; i++) {
   image = images[i];
   image.addEventListener('click', (function(imageCopy) {
     return function() {
-      var src = imageCopy.id;
+      var src = imageCopy.id.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
       currentImage = imageCopy;
       modal.style.display = "block";
-      modalVid.setAttribute("src", src);
+      modalVid.setAttribute("src", src + '?autoplay=1');
       captionText.innerHTML = '[Click To Close]';
     };
   })(image));
