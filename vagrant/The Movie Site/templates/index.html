@@ -20,7 +20,7 @@
       <div class="container movie-info">
         <div class="row">
           <div class="col-sm-4">
-            <img src='{{m.poster}}' id='img' class="img-responsive poster center-block imgMod" alt="{{m.name}} Poster">
+            <img src='{{m.poster}}' id='{{m.trailer}}' class="img-responsive poster center-block imgMod" alt="{{m.name}} Poster">
           </div>
           <div class="col-sm-8">
             <h2>{{m.name}}
@@ -37,8 +37,10 @@
   </div>
   <!-- IMAGE MODAL -->
   <div id="myModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="modal-content embed-responsive-item" id="vid01"></iframe>
+    </div>
+    <div id="caption"></div>
   </div>
 
 {% endblock %}

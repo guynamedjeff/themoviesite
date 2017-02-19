@@ -57,9 +57,9 @@ def editMovie(movie_id):
       if request.form['poster']:
         movie.poster = request.form['poster']
       if request.form['description']:
-        movie.poster = request.form['description']
+        movie.description = request.form['description']
       if request.form['trailer']:
-        movie.poster = request.form['trailer']
+        movie.trailer = request.form['trailer'] + '&autoplay=1'
       if request.form['genre']:
         movie.genre = request.form['genre']
       session.add(movie)

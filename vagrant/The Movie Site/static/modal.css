@@ -1,5 +1,6 @@
-/* Code Credit: https://www.w3schools.com/howto/howto_css_modal_images.asp
+/* Some styling provided by https://www.w3schools.com/howto/howto_css_modal_images.asp
    Changes include stylings for #myImg becoming .imgMod to accomodate additional elements. */
+
 
 .imgMod {
     border-radius: 5px;
@@ -10,10 +11,11 @@
 .imgMod:hover {opacity: 0.8;}
 
 /* The Modal (background) */
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
+    z-index: 9998; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -24,16 +26,21 @@
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
-/* Modal Content (image) */
-.modal-content {
+/* Caption of Modal Image */
+#caption {
     margin: auto;
     display: block;
     width: 80%;
     max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+    cursor: pointer;
 }
 
 /* Add Animation */
-.modal-content {
+.modal-content #caption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -49,6 +56,11 @@
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
+
+.modal-content iframe{
+    margin: 0 auto;
+    display: block;
+    }
 
 /* The Close Button */
 .close {
