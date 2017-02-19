@@ -4,9 +4,11 @@
   {{ super() }}
 {% endblock %}
 {% block content %}
-    <h3>Deleting "{{movie.name}}"</h3>
+  <div class="container-fluid">
+    <h3>Deleting "{{movie.name}}"</h3><br>
     <form action='{{url_for('deleteMovie', movie_id=movie.id)}}' method='post'>
         <input type='submit' value='Yes, Delete {{movie.name}}'>
-    </form>
-    <p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
+    </form><br><br>
+    <h4><a href='{{url_for('main')}}'>Back to Movies.</a></h4>
+  </div>
 {% endblock %}
