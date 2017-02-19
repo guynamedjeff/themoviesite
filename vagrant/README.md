@@ -15,6 +15,7 @@ https://github.com/guynamedjeff/themoviesite
 
 * 1st Window: vagrant up --> vagrant ssh --> cd /vagrant/the\ movie\ site --> python movies.py --> python main.py
 * 2nd Window: vagrant up --> vagrant ssh --> redis-server
+* URL: localhost:5000/
 
 # Description
 
