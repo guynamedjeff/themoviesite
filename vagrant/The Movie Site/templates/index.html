@@ -24,7 +24,7 @@
               <small><a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a></small>
             </h2><br>
             <h4>Description:</h4>
-            <h4>Words</h4>
+            <p>{{m.description}}</p>
           </div>
         </div><br><br>
       </div>
