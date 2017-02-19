@@ -15,6 +15,7 @@ class Movie(Base):
     year = Column (Integer(4), nullable=False)
     poster = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
+    trailer = Column(String(120), nullable=False)
     genre = Column(Integer(7), nullable=False)
 
     @property
@@ -25,6 +26,7 @@ class Movie(Base):
           'year': self.year,
           'poster': self.poster,
           'description': self.description,
+          'trailer': self.trailer,
           'genre_code': self.genre,
         }
 

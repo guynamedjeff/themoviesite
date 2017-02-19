@@ -36,6 +36,7 @@ def newMovie():
                         year=request.form['year'],
                         poster=request.form['poster'],
                         description=request.form['description'],
+                        trailer=request.form['trailer'],
                         genre=request.form['genre'],)
       session.add(newMovie)
       session.commit()
@@ -57,6 +58,8 @@ def editMovie(movie_id):
         movie.poster = request.form['poster']
       if request.form['description']:
         movie.poster = request.form['description']
+      if request.form['trailer']:
+        movie.poster = request.form['trailer']
       if request.form['genre']:
         movie.genre = request.form['genre']
       session.add(movie)
