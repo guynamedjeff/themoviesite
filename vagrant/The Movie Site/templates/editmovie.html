@@ -4,16 +4,17 @@
   {{ super() }}
 {% endblock %}
 {% block content %}
-    <h3>Editing "{{movie.name}}"</h3>
+  <div class="container-fluid">
+    <h3>Editing "{{movie.name}}"</h3><br>
     <form action='{{url_for('editMovie', movie_id=movie.id)}}' method='post'>
       <input type="text" name ="name" placeholder="{{movie.name}}"><br><br>
       <input type="text" name ="year" placeholder="{{movie.year}}"><br><br>
       <input type="text" name ="poster" placeholder="{{movie.poster}}"><br><br>
       <input type="text" name ="description" placeholder="{{movie.description}}"><br><br>
       <input type="text" name ="genre" placeholder="{{movie.genre}}"><br><br>
-      <input type="submit" value="submit">
-    </form>
-    <p><a href='{{url_for('main')}}'>Back to Movies.</a></p>
+      <input type="submit" value="Submit">
+    </form><br><br>
+    <h4><a href='{{url_for('main')}}'>Back to Movies.</a></h4>
     <div>
     # Genre Codes<br>
     # 1000000 = None<br>
@@ -24,4 +25,5 @@
     # 1010000 = Horror<br>
     # 1100000 = Animation
     </div>
+  </div>
 {% endblock %}
