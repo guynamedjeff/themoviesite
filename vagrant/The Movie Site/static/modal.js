@@ -15,7 +15,7 @@ for (i = 0; i < images.length; i++) {
       var src = imageCopy.id.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
       currentImage = imageCopy;
       modal.style.display = "block";
-      modalVid.setAttribute("src", src + '?autoplay=1');
+      modalVid.setAttribute("src", src + '?autoplay=1&iv_load_policy=3');
       captionText.innerHTML = '[Click To Close]';
     };
   })(image));
