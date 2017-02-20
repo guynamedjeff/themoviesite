@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Movie
 from cache import cache_movies
-from fetching import grab_trailer_url
+from fetching import grab_trailer_url, grab_poster
 import json
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def newMovie():
       year = request.form['year']
       newMovie = Movie(name=name,
                         year=year,
-                        poster=request.form['poster'],
+                        poster=grab_poster(name, str(year)),
                         description=request.form['description'],
                         trailer=grab_trailer_url(name, str(year)),
                         genre=request.form['genre'],)
