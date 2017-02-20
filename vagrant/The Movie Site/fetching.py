@@ -1,6 +1,6 @@
-import urlib
+import urllib
 
-def grab_url(name, year):
+def grab_trailer_url(name, year):
     search_url = "https://www.youtube.com/results?search_query=" + name + " " + year + " trailer"
     trailer_url = get_url(get_page(search_url))
     return reformat_url(trailer_url)
@@ -24,8 +24,3 @@ def get_url(page):
 
 def reformat_url(url):
     return "https://www.youtube.com/watch?v=" + url
-
-print grab_url("forrest gump", "1994")
-print get_page("https://www.youtube.com/results?search_query=forrest gump 1994 trailer")
-
-print get_url(get_page("https://www.youtube.com/results?search_query=forrest+gump+1994+trailer"))

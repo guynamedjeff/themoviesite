@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Movie
 from cache import cache_movies
+from fetching import grab_trailer_url
 import json
 
 app = Flask(__name__)
@@ -32,11 +33,13 @@ def movieDetails(movie_id):
 @app.route('/movies/new/', methods=['GET', 'POST'])
 def newMovie():
     if request.method =='POST':
-      newMovie = Movie(name=request.form['name'],
-                        year=request.form['year'],
+      name = request.form['name']
+      year = request.form['year']
+      newMovie = Movie(name=name,
+                        year=year,
                         poster=request.form['poster'],
                         description=request.form['description'],
-                        trailer=request.form['trailer'],
+                        trailer=grab_trailer_url(name, str(year)),
                         genre=request.form['genre'],)
       session.add(newMovie)
       session.commit()

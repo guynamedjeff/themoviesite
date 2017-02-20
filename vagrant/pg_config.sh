@@ -3,6 +3,7 @@ apt-get -qqy install postgresql python-psycopg2
 apt-get -qqy install python-flask python-sqlalchemy
 apt-get -qqy install python-pip
 apt-get install memcached
+apt-get install python-tk
 pip install bleach
 pip install oauth2client
 pip install requests
