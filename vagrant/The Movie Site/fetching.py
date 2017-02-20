@@ -1,10 +1,14 @@
 import urllib, re
 
+# Accepts the name and year of any particular movie.
+# Return a YouTube trailer URL to store in the database.
 def grab_trailer_url(name, year):
     search_url = "https://www.youtube.com/results?search_query=" + name + " " + year + " trailer"
     trailer_code = get_url_code(get_page(search_url), "watch?v=", "=", "\"")
     return make_trailer_url(trailer_code)
 
+# Accepts the name and year of any particular movie.
+# Return an IMDB poster URL to store in the database.
 def grab_poster(name, year):
     search_url = "http://www.imdb.com/find?q=" + name + " " + year
     title_code = get_url_code(get_page(search_url), "/title/", "/", "\"")
@@ -13,29 +17,30 @@ def grab_poster(name, year):
     mediaviewer_url = create_mediaviewer_url(shorten_title_code(title_code), poster_code)
     return find_poster_pattern(get_page(mediaviewer_url))
 
-def find_poster_pattern(page):
-    match = re.search(r'https://images-na.ssl-images-amazon.com/images/M/\w+@', page)
-    return match.group()
-
-
+# Returns a string of the code in any given URL.
 def get_page(url):
     try:
         return urllib.urlopen(url).read()
     except:
         return "error"
 
+# Searches for an image pattern on Amazon's picture gallery (page) to locate the poster URL.
+# Returns the poster URL for any given page input.
+def find_poster_pattern(page):
+    match = re.search(r'https://images-na.ssl-images-amazon.com/images/M/\w+@', page)
+    return match.group()
+
+# Takes in a website's markup, a searching pattern, and characters to help form a code (start and end).
+# Returns the code for any given title for it's respective website.
 def get_url_code(page, pattern, start, end):
 
-    start_link = page.find(pattern)
+    start_code = page.find(pattern)
 
-    if (start_link == -1):
+    if (start_code == -1):
         return None
 
-    start_id = page.find(start, start_link)
+    start_id = page.find(start, start_code)
     end_id = page.find(end, start_id + 1)
-
-    if pattern == "amazon.com/images":
-        return page[start_id + 1:end_id]
 
     if pattern == "/title/":
         return page[start_id + 7:end_id]
