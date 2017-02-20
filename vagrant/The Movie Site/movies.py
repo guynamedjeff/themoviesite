@@ -21,7 +21,7 @@ session = DBSession()
 
 
 # Movie Items
-movie1 = Movie(name="Forest Gump",
+movie1 = Movie(name="Forrest Gump",
     year="1994",
     poster="https://images-na.ssl-images-amazon.com/images/M/MV5BYThjM2MwZGMtMzg3Ny00NGRkLWE4M2EtYTBiNWMzOTY0YTI4XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SY1000_CR0,0,757,1000_AL_.jpg",
     description="Bubba Gump Shrimp",
