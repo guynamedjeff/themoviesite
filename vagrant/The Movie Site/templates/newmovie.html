@@ -17,11 +17,16 @@
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
-        <input type="text" class="form-control" name="description" placeholder="Synopsis here..." id="description">
+        <textarea class="form-control" rows="5" name="description" placeholder="Synopsis here..." id="description"></textarea>
       </div>
-      <div class="form-group">
-        <label for="genre">Genre:</label>
-        <input type="text" class="form-control" name="genre" placeholder="Type genre code here..." id="genre">
+      <label for="genre">Genres:</label>
+      <div class="checkbox" id="genre">
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="1"> Drama</label>
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="10"> Comedy</label>
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="100"> Thriller</label>
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="1000"> Action</label>
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="10000"> Horror</label>
+        <label class="checkbox-inline"><input type="checkbox" name="genre" value="100000"> Animation</label>
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form><br>

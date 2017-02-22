@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Movie
 from cache import cache_movies
 from fetching import grab_trailer_url, grab_poster
+from utils import get_genre
 import json
 
 app = Flask(__name__)
@@ -35,12 +36,13 @@ def newMovie():
     if request.method =='POST':
       name = request.form['name'].title()
       year = request.form['year']
+      genreCode = get_genre(request.form.getlist('genre'))
       newMovie = Movie(name=name,
                         year=year,
                         poster=grab_poster(name, str(year)),
                         description=request.form['description'],
                         trailer=grab_trailer_url(name, str(year)),
-                        genre=request.form['genre'],)
+                        genre=genreCode,)
       session.add(newMovie)
       session.commit()
       cache_movies(True)
@@ -63,8 +65,8 @@ def editMovie(movie_id):
         movie.description = request.form['description']
       if request.form['trailer']:
         movie.trailer = request.form['trailer']
-      if request.form['genre']:
-        movie.genre = request.form['genre']
+      if request.form.getlist('genre'):
+        movie.genre = get_genre(request.form.getlist('genre'))
       session.add(movie)
       session.commit()
       cache_movies(True)
