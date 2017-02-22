@@ -16,7 +16,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 @app.route('/movies/json/')
-def json():
+def movieJson():
     movies = cache_movies()
     return jsonify(Movies=[m for m in movies])
 
@@ -31,25 +31,43 @@ def movieDetails(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     return render_template("movie.html", movie=movie)
 
-@app.route('/movies/new/', methods=['GET', 'POST'])
+@app.route('/movies/new/')
 def newMovie():
-    if request.method =='POST':
-      name = request.form['name'].title()
-      year = request.form['year']
-      genreCode = get_genre(request.form.getlist('genre'))
-      newMovie = Movie(name=name,
-                        year=year,
-                        poster=grab_poster(name, str(year)),
-                        description=request.form['description'],
-                        trailer=grab_trailer_url(name, str(year)),
-                        genre=genreCode,)
-      session.add(newMovie)
-      session.commit()
-      cache_movies(True)
-      flash(newMovie.name + " has been added.")
-      return redirect(url_for('main'))
-    else:
-      return render_template("newmovie.html")
+  return render_template("newmovie.html")
+
+@app.route('/addNewMovie/', methods=['POST'])
+def addNewMovie():
+  name = request.form['name'].title()
+  year = request.form['year']
+  description = request.form['description']
+  genreCode = get_genre(request.form.getlist('genre'))
+  newMovie = Movie(name=name,
+                    year=year,
+                    poster=grab_poster(name, str(year)),
+                    description=description,
+                    trailer=grab_trailer_url(name, str(year)),
+                    genre=genreCode,)
+  session.add(newMovie)
+  session.commit()
+  cache_movies(True)
+  return json.dumps(newMovie.movie_json)
+
+@app.route('/previewNewMovie/', methods=['POST'])
+def previewNewMovie():
+  name = request.form['name'].title()
+  year = request.form['year']
+  description = request.form['description']
+  genreCode = get_genre(request.form.getlist('genre'))
+  poster=grab_poster(name, str(year))
+  trailer=grab_trailer_url(name, str(year))
+  newMovie = Movie(name=name,
+                    year=year,
+                    poster=grab_poster(name, str(year)),
+                    description=description,
+                    trailer=grab_trailer_url(name, str(year)),
+                    genre=genreCode,)
+  return json.dumps(newMovie.movie_json)
+
 
 @app.route('/movies/<int:movie_id>/edit/', methods=['GET', 'POST'])
 def editMovie(movie_id):

@@ -2,11 +2,52 @@
 {% block title %}Add Movie{% endblock %}
 {% block head %}
   {{ super() }}
+    <script>
+    $(function() {
+    $('#preview').click(function() {
+        $.ajax({
+            url: '/previewNewMovie/',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                var movie = JSON.parse(response);
+                var trailer = movie.trailer.replace("watch?v=", "embed/");
+                $('#preview-poster').attr("src", movie.poster)
+                $('#trailer').attr("src", trailer)
+                $('#preview-pane').show()
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+    });
+    $(function() {
+    $('#submit').click(function() {
+        $.ajax({
+            url: '/addNewMovie/',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                $('#movie-form').each(function(){
+                  this.reset();
+                })
+                $('#message').html("You have successfully added " + JSON.parse(response).name)
+                $('#preview-pane').hide()
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+    });
+    </script>
 {% endblock %}
 {% block content %}
   <div class="container-fluid">
     <h2 class="text-center">Add New Movie Form</h2><br><br>
-    <form action="{{url_for('newMovie')}}" method="POST">
+    <h4 class="text-center" id="message"></h4>
+    <form id ="movie-form" action="{{url_for('newMovie')}}" method="POST">
       <div class="form-group">
         <label for="name">Title:</label>
         <input type="text" class="form-control" name="name" placeholder="Movie Title" id="name">
@@ -27,9 +68,22 @@
         <label class="checkbox-inline"><input type="checkbox" name="genre" value="1000"> Action</label>
         <label class="checkbox-inline"><input type="checkbox" name="genre" value="10000"> Horror</label>
         <label class="checkbox-inline"><input type="checkbox" name="genre" value="100000"> Animation</label>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form><br>
-    <h4><a href='{{url_for('main')}}'>Back to Movies.</a></h4>
+      </div><br><br>
+      <button type="button" id="submit" class="btn btn-default">Submit</button><button type="button" id="preview" class="btn btn-default">Preview</button>
+    </form>
   </div>
+  <div class="container-fluid" id="preview-pane">
+    <div class="row">
+      <h4 class="text-center">Preview Pane</h4>
+      <div class="col-sm-4 center-block" id="preview-img">
+        <img id="preview-poster" class="img-responsive center-block">
+      </div>
+      <div class="col-sm-8">
+        <div class="embed-responsive embed-responsive-16by9 center-block" id="preview-trailer">
+          <iframe class="embed-responsive-item" id="trailer"></iframe>
+        </div>
+      </div>
+  </div>
+  <h4 class="text-center"><a href='{{url_for('main')}}'>Back to Movies.</a></h4>
+  </div><br><br>
 {% endblock %}

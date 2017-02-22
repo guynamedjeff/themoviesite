@@ -33,3 +33,12 @@ a, a:hover {
 .poster {
     height: 315px;
 }
+
+#preview-pane {
+    display: none;
+}
+
+#preview-trailer, #preview-poster {
+    margin: 20px auto;
+    width: 80%;
+}
