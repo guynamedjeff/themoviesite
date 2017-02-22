@@ -54,7 +54,7 @@ def editMovie(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     if request.method =='POST':
       if request.form['name']:
-        movie.name = request.form['name'].title()
+        movie.name = request.form['name']
       if request.form['year']:
         movie.year = request.form['year']
       if request.form['poster']:
