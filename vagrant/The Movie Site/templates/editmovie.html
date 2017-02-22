@@ -7,13 +7,31 @@
   <div class="container-fluid">
     <h3>Editing "{{movie.name}}"</h3><br>
     <form action='{{url_for('editMovie', movie_id=movie.id)}}' method='post'>
-      <input type="text" name ="name" placeholder="{{movie.name}}"><br><br>
-      <input type="text" name ="year" placeholder="{{movie.year}}"><br><br>
-      <input type="text" name ="poster" placeholder="{{movie.poster}}"><br><br>
-      <input type="text" name ="description" placeholder="{{movie.description}}"><br><br>
-      <input type="text" name ="trailer" placeholder="{{movie.trailer}}"><br><br>
-      <input type="text" name ="genre" placeholder="{{movie.genre}}"><br><br>
-      <input type="submit" value="Submit">
+      <div class="form-group">
+        <label for="name">Title:</label>
+        <input type="text" class="form-control" name="name" placeholder="{{movie.name}}" id="name">
+      </div>
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="text" class="form-control" name="year" placeholder="{{movie.year}}" id="year">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" name="description" placeholder="{{movie.description}}" id="description">
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" class="form-control" name="genre" placeholder="{{movie.genre}}" id="genre">
+      </div>
+      <div class="form-group">
+        <label for="trailer">Trailer:</label>
+        <input type="text" class="form-control" name="trailer" placeholder="{{movie.trailer}}" id="trailer">
+      </div>
+      <div class="form-group">
+        <label for="poster">Poster:</label>
+        <input type="text" class="form-control" name="poster" placeholder="{{movie.poster}}" id="poster">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
     </form><br><br>
     <h4><a href='{{url_for('main')}}'>Back to Movies.</a></h4>
     <div>
