@@ -33,7 +33,7 @@ def movieDetails(movie_id):
 @app.route('/movies/new/', methods=['GET', 'POST'])
 def newMovie():
     if request.method =='POST':
-      name = request.form['name']
+      name = request.form['name'].title()
       year = request.form['year']
       newMovie = Movie(name=name,
                         year=year,
@@ -54,7 +54,7 @@ def editMovie(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     if request.method =='POST':
       if request.form['name']:
-        movie.name = request.form['name']
+        movie.name = request.form['name'].title()
       if request.form['year']:
         movie.year = request.form['year']
       if request.form['poster']:
