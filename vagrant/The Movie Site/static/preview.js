@@ -27,7 +27,7 @@ $('#submit').click(function() {
             $('#movie-form').each(function(){
               this.reset();
             })
-            $('#message').html("You have successfully added " + JSON.parse(response).name)
+            $('#message').html("You have successfully added " + "\"" + JSON.parse(response).name + "\"")
             $('#preview-pane').hide()
         },
         error: function(error) {
