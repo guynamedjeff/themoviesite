@@ -5,9 +5,11 @@ from database_setup import Base, Movie
 from cache import cache_movies
 from fetching import grab_trailer_url, grab_poster
 from utils import get_genre
+from data_routes import data
 import json
 
 app = Flask(__name__)
+app.register_blueprint(data)
 
 engine = create_engine('sqlite:///movies.db')
 Base.metadata.bind = engine
@@ -34,40 +36,6 @@ def movieDetails(movie_id):
 @app.route('/movies/new/')
 def newMovie():
   return render_template("newmovie.html")
-
-@app.route('/addNewMovie/', methods=['POST'])
-def addNewMovie():
-  name = request.form['name'].title()
-  year = request.form['year']
-  description = request.form['description']
-  genreCode = get_genre(request.form.getlist('genre'))
-  newMovie = Movie(name=name,
-                    year=year,
-                    poster=grab_poster(name, str(year)),
-                    description=description,
-                    trailer=grab_trailer_url(name, str(year)),
-                    genre=genreCode,)
-  session.add(newMovie)
-  session.commit()
-  cache_movies(True)
-  return json.dumps(newMovie.movie_json)
-
-@app.route('/previewNewMovie/', methods=['POST'])
-def previewNewMovie():
-  name = request.form['name'].title()
-  year = request.form['year']
-  description = request.form['description']
-  genreCode = get_genre(request.form.getlist('genre'))
-  poster=grab_poster(name, str(year))
-  trailer=grab_trailer_url(name, str(year))
-  newMovie = Movie(name=name,
-                    year=year,
-                    poster=grab_poster(name, str(year)),
-                    description=description,
-                    trailer=grab_trailer_url(name, str(year)),
-                    genre=genreCode,)
-  return json.dumps(newMovie.movie_json)
-
 
 @app.route('/movies/<int:movie_id>/edit/', methods=['GET', 'POST'])
 def editMovie(movie_id):
