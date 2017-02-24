@@ -2,6 +2,10 @@ apt-get -qqy update
 apt-get -qqy install postgresql python-psycopg2
 apt-get -qqy install python-flask python-sqlalchemy
 apt-get -qqy install python-pip
+apt-get install -y g++
+curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+apt-get install --yes nodejs
+apt-get install git-all
 apt-get install memcached
 apt-get install python-tk
 pip install bleach
