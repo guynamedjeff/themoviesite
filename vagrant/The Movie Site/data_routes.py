@@ -16,7 +16,7 @@ session = DBSession()
 data = Blueprint('data', __name__, template_folder='templates')
 
 @data.route('/addNewMovie/', methods=['POST'])
-def addNewMovie():
+def add_new_movie():
   name = request.form['name'].title()
   year = request.form['year']
   description = request.form['description']
@@ -33,7 +33,7 @@ def addNewMovie():
   return json.dumps(newMovie.movie_json)
 
 @data.route('/previewNewMovie/', methods=['POST'])
-def previewNewMovie():
+def preview_new_movie():
   name = request.form['name'].title()
   year = request.form['year']
   description = request.form['description']
