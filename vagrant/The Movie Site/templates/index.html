@@ -23,7 +23,7 @@
           </div>
           <div class="col-sm-8">
             <h2>{{m.name}}
-              <small><a href='{{url_for('editMovie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('deleteMovie', movie_id=m.id)}}'>Delete</a></small>
+              <small><a href='{{url_for('edit_movie', movie_id=m.id)}}'>Edit</a> | <a href='{{url_for('delete_movie', movie_id=m.id)}}'>Delete</a></small>
             </h2><br>
             <h4>Description:</h4>
             <p>{{m.description}}</p>
@@ -32,7 +32,7 @@
       </div>
   {% endfor %}
   <div class="container-fluid text-center">
-    <p><a href='{{url_for('newMovie')}}'>Add Movie</a> | <a href='{{url_for('movieJson')}}'>API Endpoint</a></p>
+    <p><a href='{{url_for('new_movie')}}'>Add Movie</a> | <a href='{{url_for('api')}}'>API Endpoint</a></p>
   </div>
   <!-- IMAGE MODAL -->
   <div id="myModal" class="modal">

@@ -18,7 +18,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 @app.route('/movies/json/')
-def movieJson():
+def api():
     movies = cache_movies()
     return jsonify(Movies=[m for m in movies])
 
@@ -29,16 +29,16 @@ def main():
     return render_template("index.html", movies=movies)
 
 @app.route('/movies/<int:movie_id>/')
-def movieDetails(movie_id):
+def movie_details(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     return render_template("movie.html", movie=movie)
 
 @app.route('/movies/new/')
-def newMovie():
+def new_movie():
   return render_template("newmovie.html")
 
 @app.route('/movies/<int:movie_id>/edit/', methods=['GET', 'POST'])
-def editMovie(movie_id):
+def edit_movie(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     if request.method =='POST':
       if request.form['name']:
@@ -62,7 +62,7 @@ def editMovie(movie_id):
       return render_template("editmovie.html", movie=movie)
 
 @app.route('/movies/<int:movie_id>/delete/', methods=['GET', 'POST'])
-def deleteMovie(movie_id):
+def delete_movie(movie_id):
     movie = session.query(Movie).filter_by(id=movie_id).one()
     if request.method =='POST':
       session.delete(movie)

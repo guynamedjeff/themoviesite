@@ -6,7 +6,7 @@
 {% block content %}
   <div class="container-fluid">
     <h3>Editing "{{movie.name}}"</h3><br>
-    <form action='{{url_for('editMovie', movie_id=movie.id)}}' method='post'>
+    <form action='{{url_for('edit_movie', movie_id=movie.id)}}' method='post'>
       <div class="form-group">
         <label for="name">Title:</label>
         <input type="text" class="form-control" name="name" placeholder="{{movie.name}}" id="name">
